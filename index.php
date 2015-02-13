@@ -1,4 +1,4 @@
-<h1>Voicemail transcription demo</h1>
+<h1>Podscribe - Podcast transcription service</h1>
 
 <h2 style="color: #ff0000"><?php echo htmlentities($_REQUEST['msg']); ?></h2>
 
@@ -10,6 +10,6 @@
 </form>
 </h3>
 
-<i>You will called and asked to leave a voicemail message.  The voicemail will
+<i>You will called and asked to record a podcast.  The voicemail will
 be transcribed using Twilio's transcription API and emailed to you in a
 few minutes.</i>

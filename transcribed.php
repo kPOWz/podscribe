@@ -1,6 +1,6 @@
 <?php
     require 'vendor/autoload.php';
-    
+
     if (!isset($_REQUEST['email'])) {
         echo "Must specify email address";
         die;
@@ -26,18 +26,17 @@
         $body .= $_REQUEST['RecordingUrl'];
     } else {
         $subject = "New voicemail from ${_REQUEST['Caller']}";
-        $body = "New have a new voicemail from ${_REQUEST['Caller']}\n\n";
-        $body .= "Text of the Twilio transcribed voicemail:\n";
+        $body = "New Podscribe from ${_REQUEST['Caller']}\n\n";
+        $body .= "Text of the Podscribe transcribed podcast:\n";
         $body .= $_REQUEST['TranscriptionText']."\n\n";
-        $body .= "Click this link to listen to the message:\n";
+        $body .= "Click this link to listen to the podcast:\n";
         $body .= $_REQUEST['RecordingUrl'];
     }
 
     $message->addTo($_REQUEST['email'])->
               setFrom('me@bar.com')->
               setSubject($subject)->
-              setText($body)->
-              setHtml('<strong>Podscribe!</strong>');
+              setText($body);
     $response = $sendgrid->send($message);
     
     // $headers = 'From: help@twilio.com' . "\r\n" .
