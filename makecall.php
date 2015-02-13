@@ -35,7 +35,7 @@ if (!preg_match('/^[a-z0-9_.-]+@([a-z0-9_-]+\.)+[a-z0-9_-]{2,4}$/i', $_REQUEST['
 // 	. urlencode($_REQUEST['email']);
 // $url = "http://3bdf320a.ngrok.com/~karrie/vmt/makerecording.php?email="
 //     . urlencode($_REQUEST['email']);
-$url = "hhttp://podscribe.herokuapp.com/makerecording.php?email="
+$url = "http://podscribe.herokuapp.com/makerecording.php?email="
     . urlencode($_REQUEST['email']);
 
 /* make Twilio REST request to initiate outgoing call */
