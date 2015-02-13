@@ -1,0 +1,6 @@
+## hidden files to ignore
+.*
+!/.gitignore
+
+## Composer-loaded Extensions
+vendor/*

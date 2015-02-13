@@ -1,0 +1,46 @@
+@{
+ 
+    /* Set our AccountSid and AuthToken */
+    string sid = "ACea653355632bce6e60cf2bae49928625";
+    string token = "c8f8a08fa23a9751651c30cd198c759d";
+ 
+    /* Outgoing Caller ID you have previously validated with Twilio */
+    string CallerID = "+13193275186";
+ 
+    /* Instantiate a new Twilio Rest Client */
+    var client = new Twilio.TwilioRestClient(sid, token);
+
+    Uri cleanedUri = new Uri(Request.Url.GetComponents(UriComponents.AbsoluteUri & ~UriComponents.Port, UriFormat.UriEscaped));
+    string baseUri = cleanedUri.AbsoluteUri.Remove(cleanedUri.AbsoluteUri.Length - cleanedUri.Segments.Last().Length);
+ 
+    /* Validate request */
+    if (Request["number"]==null) {
+        Response.Redirect("index.cshtml?msg=Must specify phone number", true);
+    }
+ 
+    if (Request["number"]==null) {
+        Response.Redirect("index.cshtml?msg=Must specify email address", true);
+    }
+ 
+    System.Text.RegularExpressions.Match m = System.Text.RegularExpressions.Regex.Match(Request["email"], @"^[a-z0-9_.-]+@([a-z0-9_-]+\.)+[a-z0-9_-]{2,4}$");    
+    if (!m.Success) {
+        Response.Redirect("index.cshtml?msg=Invalid email address", true);
+    }
+
+    string url = string.Format("{0}makerecording.cshtml?email={1}", baseUri, Request["email"]);
+ 
+    /* make Twilio REST request to initiate outgoing call */
+    try {
+ 
+        var call = client.InitiateOutboundCall(CallerID, Request["number"], url);
+ 
+        /* redirect back to the main page with CallSid */
+        Response.Redirect(
+            string.Format("index.cshtml?msg=Calling... {0}&CallSid={1}", Request["number"], call.Sid), false); 
+    
+    } 
+    catch(Exception exc) {
+        Response.Redirect(
+            string.Format("index.cshtml?msg={0}", exc.Message), true);
+    }
+}

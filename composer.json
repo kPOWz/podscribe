@@ -1,0 +1,18 @@
+{
+    "name": "kpowz/vmt",
+    "description": "Voicemail Transcription Twilio REST API.",
+    "homepage": "https://github.com/kPOWz/vmt",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Katherine Zeman",
+            "email": "karrie.zeman@gmail.com",
+            "homepage": "https://github.com/kPOWz"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "twilio/sdk": "dev-master"
+    }
+}
