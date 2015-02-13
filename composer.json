@@ -13,6 +13,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "twilio/sdk": "dev-master"
+        "twilio/sdk": "dev-master",
+        "sendgrid/sendgrid": "2.0.5"
     }
 }

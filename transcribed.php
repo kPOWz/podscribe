@@ -14,6 +14,9 @@
         die;
     }
     
+    $sendgrid = new SendGrid('app33973105@heroku.com', 'lklrfwuu');
+    $message = new SendGrid\Email();
+
     if (strtolower($_REQUEST['TranscriptionStatus']) != "completed") {
         $subject = "Error transcribing voicemail from ${_REQUEST['Caller']}";
         $body = "New have a new voicemail from ${_REQUEST['Caller']}\n\n";
@@ -27,9 +30,19 @@
         $body .= "Click this link to listen to the message:\n";
         $body .= $_REQUEST['RecordingUrl'];
     }
+
     
-    $headers = 'From: help@twilio.com' . "\r\n" .
-        'Reply-To: help@twilio.com' . "\r\n" .
-        'X-Mailer: Twilio';
-    mail($_REQUEST['email'], $subject, $body, $headers);
+    $
+    
+    $message->addTo($_REQUEST['email'])->
+              setFrom('me@bar.com')->
+              setSubject($subject)->
+              setText($body)->
+              setHtml('<strong>Podscribe!</strong>');
+    $response = $sendgrid->send($message);
+    
+    // $headers = 'From: help@twilio.com' . "\r\n" .
+    //     'Reply-To: help@twilio.com' . "\r\n" .
+    //     'X-Mailer: Twilio';
+    // mail($_REQUEST['email'], $subject, $body, $headers);
 ?>
