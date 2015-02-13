@@ -31,9 +31,6 @@
         $body .= $_REQUEST['RecordingUrl'];
     }
 
-    
-    $
-    
     $message->addTo($_REQUEST['email'])->
               setFrom('me@bar.com')->
               setSubject($subject)->
