@@ -1,4 +1,6 @@
 <?php
+    require 'vendor/autoload.php';
+    
     if (!isset($_REQUEST['email'])) {
         echo "Must specify email address";
         die;
